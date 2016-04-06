@@ -2,6 +2,7 @@
 	"modules" : { 
 		"GoogleURL"  : {
 			"description": "Permet d'ouvrir un site quelconque",
+			"navigateur": "chrome",
 			"version": "1.0",
 			"auteur": "Jean-Charles Moussé"
 		}

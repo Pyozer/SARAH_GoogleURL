@@ -142,8 +142,14 @@ function getUrlWebsite(search, callback) {
 // Permet d'ouvrir chrome a l'adresse indiqué
 function open_chrome_url(url) {
     var exec = require('child_process').exec;
-
-    var process = 'start chrome ' + url;
+    var config = Config.modules.GoogleURL;
+    var navigateur = config.navigateur;
+    if(navigateur == "chrome" || navigateur == "firefox" || navigateur == "opera") {
+    	var process = 'start ' + navigateur + ' ' + url;
+    } else {
+    	var process = 'start chrome ' + url;
+    }
+    
     var child = exec(process);
     return;
 }
