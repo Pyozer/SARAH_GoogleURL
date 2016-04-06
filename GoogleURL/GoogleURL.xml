@@ -1,0 +1,47 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleGoogleURL" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+	<rule id="ruleGoogleURL" scope="public">
+		<example>Jarvis affiche le site twitter</example>
+		<tag>out.action=new Object(); </tag>
+
+		<item>Jarvis</item>
+    	
+    	<item repeat="0-1">
+    		<one-of>
+    			<item>tu peux</item>
+    			<item>tu peux m'</item>
+    			<item>peux tu</item>
+    			<item>peux tu m'</item>
+    		</one-of>
+    	</item>
+
+		<one-of>
+			<item>ouvre</item>
+			<item>ouvrir</item>
+			<item>montre moi</item>
+			<item>montre</item>
+			<item>affiche</item>
+			<item>afficher</item>
+		</one-of>
+
+		<item repeat="0-1">
+			<one-of>
+				<item>site</item>
+				<item>le site</item>
+				<item>comme site</item>
+				<item>un site</item>
+			</one-of>
+		</item>
+		
+		<item repeat="0-1">
+			<one-of>
+				<item>de</item>
+				<item>du</item>
+				<item>au</item>
+			</one-of>
+		</item>
+
+		<ruleref special="GARBAGE" />
+		
+		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/GoogleURL";</tag>
+	</rule>
+</grammar>
