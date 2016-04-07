@@ -13,7 +13,6 @@
     			<item>peux tu m'</item>
     		</one-of>
     	</item>
-
 		<one-of>
 			<item>ouvre</item>
 			<item>ouvrir</item>
@@ -22,7 +21,6 @@
 			<item>affiche</item>
 			<item>afficher</item>
 		</one-of>
-
 		<item repeat="0-1">
 			<one-of>
 				<item>site</item>
@@ -31,7 +29,6 @@
 				<item>un site</item>
 			</one-of>
 		</item>
-		
 		<item repeat="0-1">
 			<one-of>
 				<item>de</item>
