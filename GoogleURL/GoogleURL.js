@@ -48,8 +48,8 @@ function checkScribe(event, action, callback) {
 			decodeScribe(SARAH.context.scribe.lastPartial, callback);
 		} else {
 			SARAH.context.scribe.activePlugin('Aucun (GoogleURL)');
-			ScribeSpeak("Désolé je n'ai pas compris. Merci de réessayer.", true);
-			return callback();
+			//ScribeSpeak("Désolé je n'ai pas compris. Merci de réessayer.", true);
+			return callback({ 'tts': "Désolé je n'ai pas compris. Merci de réessayer." });
 		}
 		
 	} else {
@@ -65,8 +65,8 @@ function decodeScribe(search, callback) {
 	var match = search.match(rgxp);
 	if (!match || match.length <= 1){
 		SARAH.context.scribe.activePlugin('Aucun (GoogleURL)');
-		ScribeSpeak("Désolé je n'ai pas compris.", true);
-		return callback();
+		//ScribeSpeak("Désolé je n'ai pas compris.", true);
+		return callback({ 'tts': "Désolé je n'ai pas compris." });
 	}
 	search = match[2];
 	return getUrlWebsite(search, callback);
@@ -87,9 +87,9 @@ function getUrlWebsite(search, callback) {
 		console.log('[ GoogleURL ] Vérifié via la sauvegarde');
 		var urlwebsite = file_content[search];
 
-		ScribeSpeak("Voilà le site de " + search);
+		//ScribeSpeak("Voilà le site de " + search);
 		open_chrome_url(urlwebsite); // On ouvre le site via chrome
-		callback();
+		callback({ 'tts': "Voilà le site de " + search });
 		return;
 
 	} else { // Si il est pas sauvegardé, on le cherche via Google
@@ -108,8 +108,8 @@ function getUrlWebsite(search, callback) {
 		request({ 'uri': url, 'headers': options }, function(error, response, html) {
 
 	    	if (error || response.statusCode != 200) {
-	    		ScribeSpeak("La requête vers Google a échoué. Erreur " + response.statusCode);
-				callback();
+	    		//ScribeSpeak("La requête vers Google a échoué. Erreur " + response.statusCode);
+				callback({ 'tts': "La requête vers Google a échoué. Erreur " + response.statusCode });
 				return;
 		    }
 	        var $ = cheerio.load(html);
@@ -118,8 +118,8 @@ function getUrlWebsite(search, callback) {
 
 	        if(urlwebsite == "") {
 	        	console.log("Impossible de récupérer l'url du site via Google");
-	        	ScribeSpeak("Désolé, je n'ai pas réussi à récupérer d'informations");
-				callback();
+	        	//ScribeSpeak("Désolé, je n'ai pas réussi à récupérer d'informations");
+				callback({ 'tts': "Désolé, je n'ai pas réussi à récupérer d'informations" });
 	        } else {
 	        	console.log("Informations: " + urlwebsite);
 
@@ -130,9 +130,9 @@ function getUrlWebsite(search, callback) {
 					console.log("[ GoogleURL ] Informations enregistrés");
 				});
 
-	        	ScribeSpeak("Voilà le site de " + search);
+	        	//ScribeSpeak("Voilà le site de " + search);
 	        	open_chrome_url(urlwebsite); // On ouvre le site via chrome
-				callback();
+				callback({ 'tts': "Voilà le site de " + search });
 	        }
 		    return;
 	    });
